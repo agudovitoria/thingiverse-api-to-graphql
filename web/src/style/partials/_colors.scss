@@ -1,0 +1,37 @@
+$black: rgb(0, 0, 0);
+$white: rgb(255,255,255);
+$grey: rgb(100, 100, 100);
+$blue: rgb(0, 100, 255);
+$yellow: rgb(255, 255, 100);
+$red: rgb(255, 100, 100);
+
+$mat:
+rgb(252, 242, 231)
+rgb(248, 222, 195)
+rgb(243, 200, 156)
+rgb(238, 178, 116)
+rgb(234, 162, 86)
+rgb(230, 145, 56)
+rgb(227, 137, 50)
+rgb(223, 126, 43)
+rgb(219, 116, 36)
+rgb(213, 98, 23)
+rgb(255, 255, 255)
+rgb(255, 227, 212)
+rgb(255, 195, 161)
+rgb(255, 178, 135);
+
+$mat-50: nth($mat, 1);
+$mat-100: nth($mat, 2);
+$mat-200: nth($mat, 3);
+$mat-300: nth($mat, 4);
+$mat-400: nth($mat, 5);
+$mat-500: nth($mat, 6);
+$mat-600: nth($mat, 7);
+$mat-700: nth($mat, 8);
+$mat-800: nth($mat, 9);
+$mat-900: nth($mat, 10);
+$mat-A100: nth($mat, 11);
+$mat-A200: nth($mat, 12);
+$mat-A400: nth($mat, 13);
+$mat-A700: nth($mat, 14);

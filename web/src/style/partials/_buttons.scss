@@ -1,0 +1,22 @@
+@import './colors';
+
+.button {
+    padding: 8px;
+    border: solid 4px $mat-500;
+    border-radius: 8px;
+    color: $black;
+    font-size: 2em;
+
+    &:hover {
+        cursor: pointer;
+        background-color: $mat-100;
+    }
+
+    &:active {
+        background-color: $mat-300;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}

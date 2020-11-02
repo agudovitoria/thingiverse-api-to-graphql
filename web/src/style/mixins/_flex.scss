@@ -1,0 +1,17 @@
+@mixin attr-x($attr, $props...) {
+    $attr-count: 20;
+    $attr-steps: 5;
+    $unit: '%';
+    $attr-list: null;
+    @for $i from 1 through $attr-count {
+      $attr-value: $attr-steps * $i;
+  
+      .#{$attr}-#{$attr-value} {
+        @each $prop in $props {
+          #{$prop}: #{$attr-value}#{$unit};
+        }
+      }
+  
+      $attr-list: append($attr-list, unquote(".#{$attr}-#{$attr-value}"), comma);
+    }
+  }

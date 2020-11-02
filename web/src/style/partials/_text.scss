@@ -1,0 +1,14 @@
+@import './colors';
+
+.info-message {
+    color: $blue;
+}
+
+.warning-message {
+    color: $yellow;
+}
+
+.error-message {
+    color: $red;
+    font-weight: bolder;
+}
