@@ -1,0 +1,23 @@
+apps:
+  - script: 'serve'
+    name: 'client'
+    env:
+      PM2_SERVE_PATH: 'web/build'
+      PM2_SERVE_PORT: '3000'
+      PM2_SERVE_SPA: 'true'
+      PM2_SERVE_HOMEPAGE: '/index.html'
+
+  - script: ./gateway/server.js
+    name: 'gateway'
+    instances: 2
+    exec_mode: cluster
+    watch: false
+    env:
+      NODE_ENV: production
+
+  - script: ./auth-server/dist/index.js
+    name: 'auth'
+    instances: 2
+    exec_mode: cluster
+    env:
+      NODE_ENV: production

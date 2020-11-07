@@ -6,43 +6,24 @@ import dotenv, { DotenvConfigOutput } from 'dotenv';
 import express, { Express } from 'express';
 import listEndpoints, { Endpoint } from 'express-list-endpoints';
 import morgan from 'morgan';
-import winston from 'winston';
+import { Logger } from 'winston';
+import WinstonLogger from '../config/WinstonLogger';
 
-import { loginRouter } from '../route/LoginRoutes';
+import LoginRouter from '../route/LoginRouter';
 
-export default class Server {
+export default class Server  {
   app: Express;
   server: any;
-  logger: any;
+  logger: Logger;
 
   constructor() {
     this.app = express();
-
-    this.logger = winston.createLogger({
-      level: 'info',
-      format: winston.format.json(),
-      defaultMeta: { service: 'user-service' },
-      transports: [
-        new winston.transports.File({ filename: 'log/error.log', level: 'error' }),
-        new winston.transports.File({ filename: 'log/combined.log' }),
-      ]
-    });
-
-    const { NODE_ENV: environment } = process.env;
-
-    if (environment === 'development') {
-      this.logger.add(new winston.transports.Console({
-        format: winston.format.simple(),
-      }));
-    }
+    this.logger = new WinstonLogger()?.logger;
 
     this.initEnvironmentVariables();
-
-    const port = this.readPortFromEnv();
-
     this.initApplicationConfiguration();
     this.initRoutes();
-    this.startApplication(port);
+    this.startApplication(this.readPortFromEnv());
     this.listConfiguredEndpoints();
   }
 
@@ -80,7 +61,13 @@ export default class Server {
 
   private initRoutes() {
     this.logger.debug('🚦  Defining route');
-    this.app.use('/api', loginRouter);
+    const { router }: LoginRouter = new LoginRouter();
+
+    if (!router) {
+      throw new Error('Invalid router retrieved from LoginRouter');
+    }
+
+    this.app.use('/api', router);
   }
 
   private listConfiguredEndpoints() {
