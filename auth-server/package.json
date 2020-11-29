@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "DEBUG=axios node -r ts-node/register ./src/index.ts",
-    "start:debug": "node --inspect=5858 -r ts-node/register ./src/index.ts",
+    "start:debug-node": "node --inspect=5858 -r ts-node/register ./src/index.ts",
     "start:watch": "nodemon",
+    "start:debug": "nodemon --inspect",
     "build": "tsc",
     "test": "NODE_ENV=test jest --detectOpenHandles --no-cache  --forceExit",
     "test:unit": "ENV_FILE=./config/.env.test jest --detectOpenHandles --forceExit --no-cache --verbose",
@@ -67,18 +68,5 @@
     "ts-jest": "^26.4.3",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.3"
-  },
-  "nodemonConfig": {
-    "ignore": [
-      "**/__test__/*.ts",
-      "**/__mocks__/*.ts",
-      ".git",
-      "node_modules"
-    ],
-    "watch": [
-      "src"
-    ],
-    "exec": "npm start",
-    "ext": "ts"
   }
 }

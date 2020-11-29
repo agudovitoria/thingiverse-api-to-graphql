@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "start:gateway": "cd gateway && yarn start",
+    "start:auth-server": "cd auth-server && yarn start",
+    "start:web": "cd web && yarn start",
+    "start:graphql-server": "cd graphql-server && yarn start",
+    "start": "NODE_ENV=development concurrently \"yarn start:gateway\" \"yarn start:auth-server\" \"yarn start:graphql-server\" \"yarn start:web\""
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0"
+  }
+}

@@ -28,7 +28,7 @@ export default (props: CallbackProps) => {
             })
             .catch(manageErrorResponse)
             .finally(() => setAsReady());
-    }, [code]);
+    }, [code, setToken]);
 
     const setAsLoading = () => setLoading(true);
     const setAsReady = () => setLoading(false);

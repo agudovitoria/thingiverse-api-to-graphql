@@ -1,0 +1,12 @@
+{
+  "ignore": [
+    "**/__test__/*.ts",
+    "**/__mocks__/*.ts",
+    "node_modules"
+  ],
+  "watch": [
+    "src"
+  ],
+  "exec": "npm start",
+  "ext": "ts"
+}

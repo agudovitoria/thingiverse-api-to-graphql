@@ -1,0 +1,19 @@
+{
+  "env": {
+    "TZ": "UTC",
+    "NODE_ENV": "development",
+    "LOG_LEVEL": "debug"
+  },
+  "ignore": [
+    "**/__test__/*.ts",
+    "**/__mocks__/*.ts",
+    ".git",
+    "node_modules"
+  ],
+  "watch": [
+    "src"
+  ],
+  "signal": "SIGTERM",
+  "exec": "ts-node -r tsconfig-paths/register src/index.ts",
+  "ext": "ts"
+}
