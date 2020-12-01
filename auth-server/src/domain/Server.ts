@@ -1,5 +1,6 @@
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import axiosDebugLog from "axios-debug-log";
+import cors from "cors";
 import compression from "compression";
 import { Debugger } from "debug";
 import dotenv, { DotenvConfigOutput } from "dotenv";
@@ -32,6 +33,7 @@ export default class Server {
     this.initAxiosLogger();
     this.initParsers();
     this.initCompression();
+    this.initCors();
   }
 
   private initEnvironmentVariables() {
@@ -82,6 +84,11 @@ export default class Server {
   private initCompression() {
     this.logger.debug("🗜  Enabling compression");
     this.app.use(compression());
+  }
+
+  private initCors() {
+    this.logger.debug("🗜  Enabling CORS");
+    this.app.use(cors());
   }
 
   private initParsers() {

@@ -1,37 +1,37 @@
-import axios, { AxiosInstance } from 'axios';
-import { TokenAccess, TokenResponse } from '../domain/TokenResponse';
-import { ApiConfig } from '../shared/ApiConfig';
+import axios from 'axios';
+
+import { TokenAccess } from '../domain/TokenResponse';
 import { haveToken, saveToken } from './StorageService';
 
-const client: AxiosInstance = axios.create({ baseURL: ApiConfig.base });
+const { REACT_APP_THINGIVERSE_LOGIN_URL, REACT_APP_THINGIVERSE_EXCHANGE_CODE_URL } = process.env;
 
-export const goToAuthPage = () => window.location.href = ApiConfig.loginUri;
-export const  goToMainPage =  () => window.location.href = '/';
+export const goToAuthPage = () =>
+  (window.location.href = REACT_APP_THINGIVERSE_LOGIN_URL || '/error');
+export const goToMainPage = () => (window.location.href = '/');
 
 export const login = () => {
-    if (!haveToken()) {
-        return goToAuthPage();
-    }
+  const wasTokenSaved = haveToken();
+  if (!wasTokenSaved) {
+    return goToAuthPage();
+  }
 
-    goToMainPage();
+  goToMainPage();
 };
 
-export const tokenFromCode = (code: string): Promise<TokenAccess> => {
-    const urlSearchParams: URLSearchParams = new URLSearchParams();
-    urlSearchParams.append('code', code);
+export const tokenFromCode = async (code: string): Promise<TokenAccess> => {
+  const urlSearchParams: URLSearchParams = new URLSearchParams();
+  urlSearchParams.append('code', code);
 
-    const url: string = `${ApiConfig.codeToTokenUri}?${urlSearchParams.toString()}`;
+  const url: string = `${REACT_APP_THINGIVERSE_EXCHANGE_CODE_URL}?${urlSearchParams.toString()}`;
 
-    return client.get(url)
-        .then(({ data }: TokenResponse) => data)
-        .then((accessToken: TokenAccess) => {
-            if (!accessToken) {
-                throw new Error('Invalid access token response');
-            }
+  const accessToken: TokenAccess = await axios.get(url);
 
-            saveToken(accessToken);
+  debugger;
+  if (!accessToken) {
+    throw new Error('Invalid access token response');
+  }
 
-            return accessToken;
-        });
+  saveToken(accessToken);
+
+  return accessToken;
 };
-

@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { ApolloProvider } from '@apollo/client';
 import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import ThingiverseClient from './client/ThingiverseClient';
+import AxiosConfig from './config/AxiosConfig';
+
+AxiosConfig();
 
 ReactDOM.render(
   <React.StrictMode>
+    <ApolloProvider client={ThingiverseClient}>
         <App />
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,9 +1,9 @@
 @import './style/variables';
-@import "./style/mixins/flex";
-@import "./style/partials/buttons";
-@import "./style/partials/colors";
-@import "./style/partials/text";
-@import "~bootstrap/scss/bootstrap";
+@import './style/mixins/flex';
+@import './style/partials/buttons';
+@import './style/partials/colors';
+@import './style/partials/text';
+@import '~bootstrap/scss/bootstrap';
 @include attr-x('flex', 'max-width', 'min-width', 'width');
 
 body {
@@ -13,41 +13,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.row {
-  padding: 8px 0;
-  margin: 8px 0;
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  -webkit-flex-direction:horizontal;
-  -moz-flex-direction:horizontal;
-  -ms-flex-direction:row;
-  -webkit-flex-direction:row;
-
-  &.centered {
-    justify-content: center;
-  }
-}
-
-.col {
-  padding: 0 8px;
-  margin: 0 8px;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  -webkit-flex-direction:vertical;
-  -moz-flex-direction:vertical;
-  -ms-flex-direction:column;
-  -webkit-flex-direction:column;
-
-  &.centered {
-    align-self: center;
-  }
-}
-
 .box {
   flex: 1;
   border: 1px solid $mat-500;
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 8px;
 }

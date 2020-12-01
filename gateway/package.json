@@ -6,7 +6,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon"
+    "start": "LOG_LEVEL=debug nodemon"
   },
   "dependencies": {
     "express-gateway": "^1.16.10"

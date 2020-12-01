@@ -7,9 +7,8 @@ apiEndpoints:
   api:
     host: localhost
     paths:
-      - '/api'
       - '/api/*'
-  login:
+  rest:
     host: localhost
     paths:
       - '/login'
@@ -17,10 +16,17 @@ apiEndpoints:
       - '/logout'
       - '/exchange'
       - '/exchange/*'
-      - '/me'
+
+  graphql:
+    host: localhost
+    paths:
+      - '/graphql'
 serviceEndpoints:
-  login:
+  rest:
     url: 'http://localhost:8001'
+
+  graphql:
+    url: 'http://localhost:4000'
 policies:
   - basic-auth
   - cors
@@ -31,13 +37,30 @@ policies:
   - proxy
   - rate-limit
 pipelines:
-  default:
+  api:
     apiEndpoints:
       - api
     policies:
+      - log:
+        - action:
+            message: ${req.method} ${req.originalUrl}
       - cors:
         - origin: false
       - proxy:
           - action:
-              serviceEndpoint: login
+              serviceEndpoint: rest
+              changeOrigin: true  
+
+  graphql:
+    apiEndpoints:
+      - graphql
+    policies:
+      - log:
+        - action:
+            message: ${req.method} ${req.originalUrl}
+      - cors:
+        - origin: false
+      - proxy:
+          - action:
+              serviceEndpoint: graphql
               changeOrigin: true
