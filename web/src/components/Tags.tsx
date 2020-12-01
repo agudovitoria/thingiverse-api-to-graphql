@@ -1,5 +1,5 @@
 import React from 'react';
-import { Badge } from 'react-bootstrap';
+import { Container, Badge } from 'react-bootstrap';
 import { createUseStyles } from 'react-jss';
 
 import { Tag } from '../domain/Tag';
@@ -14,12 +14,12 @@ export default function Tags({ tags }: { tags: Tag[] }) {
   const styles = useStyles();
 
   return (
-    <>
+    <Container fluid>
       {tags.map(({ name }: Tag, index: number) => (
         <Badge variant="primary" className={styles.badge} key={`tag-${index}`}>
           {name}
         </Badge>
       ))}
-    </>
+    </Container>
   );
 }

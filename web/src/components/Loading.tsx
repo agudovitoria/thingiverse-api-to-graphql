@@ -5,6 +5,7 @@ import { LoadingProps } from '../domain/LoadingProps';
 
 const useStyles = createUseStyles({
   root: {
+    height: '100%',
     display: 'flex',
     padding: '8px 24px',
     alignItems: 'center',

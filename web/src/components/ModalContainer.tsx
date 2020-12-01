@@ -1,7 +1,9 @@
 import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
+import { ModalSize } from '../domain/ModalSize';
 
 interface ModalProps {
+  size: ModalSize;
   opened: boolean;
   title: string;
   onHide: () => void;
@@ -9,10 +11,10 @@ interface ModalProps {
 }
 
 export default function ModalContainer(props: any) {
-  const { opened, title, onHide, onClose }: ModalProps = props;
+  const { size = ModalSize.sm, opened, title, onHide, onClose }: ModalProps = props;
 
   return (
-    <Modal show={opened} onHide={onHide} backdrop="static" keyboard={true}>
+    <Modal size={size} show={opened} onHide={onHide} backdrop={true} keyboard={true}>
       <Modal.Header closeButton>
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>

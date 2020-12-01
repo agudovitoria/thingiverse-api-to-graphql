@@ -38,8 +38,8 @@ export default function Profile({ creator }: { creator: ItemCreator }) {
         </Col>
       </Row>
       <ModalContainer
-        opened={opened}
         title="User Profile"
+        opened={opened}
         onHide={() => {
           setOpened(false);
         }}
